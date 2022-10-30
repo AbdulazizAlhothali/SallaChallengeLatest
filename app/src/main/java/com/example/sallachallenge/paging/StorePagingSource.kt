@@ -30,6 +30,8 @@ class StorePagingSource(private val storeApi: StoreApi, private val header: Stri
             LoadResult.Error(e)
         } catch (e: HttpException){
             LoadResult.Error(e)
+        } catch (e: Exception){
+            LoadResult.Error(e)
         }
     }
 }
