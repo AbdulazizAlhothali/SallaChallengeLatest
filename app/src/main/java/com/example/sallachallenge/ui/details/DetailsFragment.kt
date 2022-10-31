@@ -37,12 +37,10 @@ class DetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-
-        devJson
         binding.dev = devJson
         viewModel.getDetailsData(devJson.id, arg.productID)
         viewModel.error.observe(viewLifecycleOwner) {
-            if(it != null) {
+            if (it != null) {
                 binding.progress.visibility = View.VISIBLE
                 binding.btRetry.visibility = View.VISIBLE
                 binding.textView8.visibility = View.VISIBLE
@@ -54,7 +52,7 @@ class DetailsFragment : Fragment() {
         }
         viewModel.state.observe(viewLifecycleOwner) { details ->
             binding.details = details
-            if (details.success){
+            if (details.success) {
                 binding.floatingActionButton3.visibility = View.VISIBLE
                 binding.floatingActionButton4.visibility = View.VISIBLE
                 binding.indicator.visibility = View.VISIBLE
@@ -73,8 +71,5 @@ class DetailsFragment : Fragment() {
             binding.vpDetails.adapter = adapter
             binding.indicator.setViewPager(binding.vpDetails)
         }
-
-
     }
-
 }
