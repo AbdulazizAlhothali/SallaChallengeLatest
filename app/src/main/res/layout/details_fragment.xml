@@ -52,12 +52,11 @@
 
         <me.relex.circleindicator.CircleIndicator3
             android:id="@+id/indicator"
-            android:layout_width="236dp"
+            android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
             android:elevation="4dp"
             android:layoutDirection="rtl"
-            app:ci_drawable="@color/black"
             app:ci_gravity="center"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"

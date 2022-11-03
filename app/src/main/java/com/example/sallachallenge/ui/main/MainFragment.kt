@@ -65,7 +65,6 @@ class MainFragment : Fragment() {
         binding.rvMain.setHasFixedSize(true)
 
 
-
         concatAdapter.addAdapter(brandAdapter)
         concatAdapter.addAdapter(
             adapter.withLoadStateHeaderAndFooter(

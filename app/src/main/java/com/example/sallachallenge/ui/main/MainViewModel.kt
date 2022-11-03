@@ -22,7 +22,6 @@ class MainViewModel @Inject constructor(private val repo: StoreRepo) : ViewModel
 
 
 
-
     fun getItemData(header: String) = repo.getStoreData(header).cachedIn(viewModelScope).asLiveData()
 
     fun getBrandData(header: String) {
@@ -38,12 +37,7 @@ class MainViewModel @Inject constructor(private val repo: StoreRepo) : ViewModel
                     _error.value = result.message
                 }
             }
-
-
-
-
         }
-
     }
 
 }
