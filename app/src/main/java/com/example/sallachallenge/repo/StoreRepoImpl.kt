@@ -2,7 +2,6 @@ package com.example.sallachallenge.repo
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import androidx.paging.liveData
 import com.example.sallachallenge.paging.StorePagingSource
 import com.example.sallachallenge.retrofit.StoreApi
 import com.example.sallachallenge.utils.Resource

@@ -90,8 +90,8 @@ class MainFragment : Fragment() {
     }
 
     private fun setObservers() {
-        viewModel.getBrandData(devJson.id)
-        viewModel.getItemData(devJson.id).observe(viewLifecycleOwner) {
+        viewModel.getBrandData()
+        viewModel.itemsState.observe(viewLifecycleOwner) {
             Log.e("MyStore", "here $it")
             adapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
