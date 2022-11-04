@@ -16,7 +16,7 @@ data class Data (
     val urls : Urls,
     val price : Price,
     val taxed_price : Taxed_price,
-    val pre_tax_price : Pre_tax_price,
+    val pre_tax_price : PreTaxPrice,
     val tax : Tax,
     val description : String,
     val quantity : Int,
