@@ -1,5 +1,7 @@
 package com.example.sallachallenge.models.brand
 
+import com.google.gson.annotations.SerializedName
+
 
 data class Brand (
 
@@ -8,6 +10,8 @@ data class Brand (
 	val description : String,
 	val banner : String,
 	val logo : String,
-	val ar_char : String,
-	val en_char : String
+	@SerializedName("ar_char")
+	val arChar : String,
+	@SerializedName("en_char")
+	val enChar : String
 )

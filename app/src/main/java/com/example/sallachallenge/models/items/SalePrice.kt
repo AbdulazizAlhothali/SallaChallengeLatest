@@ -1,7 +1,7 @@
 package com.example.sallachallenge.models.items
 
 
-data class Sale_price (
+data class SalePrice (
 
 	val amount : Double,
 	val currency : String

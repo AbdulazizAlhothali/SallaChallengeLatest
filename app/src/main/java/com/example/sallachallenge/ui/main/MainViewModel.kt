@@ -8,16 +8,16 @@ import com.example.sallachallenge.models.brand.BrandData
 import com.example.sallachallenge.models.developersjson.DevelopersJson
 import com.example.sallachallenge.models.items.Data
 import com.example.sallachallenge.repo.StoreRepo
+import com.example.sallachallenge.ui.BaseViewModel
 import com.example.sallachallenge.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val repo: StoreRepo) : ViewModel()  {
+class MainViewModel @Inject constructor(private val repo: StoreRepo) : BaseViewModel()  {
 
-    private val _error = MutableLiveData<String?>(null)
-    val error: LiveData<String?> = _error
+
     private val _state = MutableLiveData<BrandData>()
     val state = _state
     val itemsState : LiveData<PagingData<Data>> = getItemData()
@@ -33,10 +33,10 @@ class MainViewModel @Inject constructor(private val repo: StoreRepo) : ViewModel
             when(val result = repo.getBrandData()){
                 is Resource.Success -> {
                     _state.postValue(result.data)
-                    _error.value = null
+                    handleError(null)
                 }
                 is Resource.Error -> {
-                    _error.value = result.message
+                    handleError(result.message)
                 }
             }
         }
