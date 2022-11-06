@@ -2,55 +2,40 @@ package com.example.sallachallenge.ui.details
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.example.sallachallenge.R
 import com.example.sallachallenge.databinding.DetailsFragmentBinding
 import com.example.sallachallenge.models.developersjson.DevelopersJson
+import com.example.sallachallenge.ui.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class DetailsFragment : Fragment() {
+class DetailsFragment : BaseFragment<DetailsFragmentBinding, DetailsViewModel>(R.layout.details_fragment) {
 
     private val arg: DetailsFragmentArgs by navArgs()
-    private lateinit var binding: DetailsFragmentBinding
-    private val viewModel by viewModels<DetailsViewModel>()
     private lateinit var adapter: DetailsAdapter
 
     @Inject
     lateinit var devJson: DevelopersJson
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = DetailsFragmentBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
-        binding.dev = devJson
+    override fun DetailsFragmentBinding.initialize(){
+        this.dev = devJson
         viewModel.getDetailsData(devJson.id, arg.productID)
         viewModel.error.observe(viewLifecycleOwner) {
             if (it != null) {
-                failedCaLL(errorMessage = it)
+                failedCaLL(this, errorMessage = it)
             }
         }
         viewModel.state.observe(viewLifecycleOwner) { details ->
             binding.details = details
             if (details.success) {
-                successCall()
+                successCall(this)
             }
             if (details.data.promotion.title != null) {
-                promotion(details.data.promotion.title)
+                promotion(this,details.data.promotion.title)
             }
             adapter = DetailsAdapter(details.data.images)
             Log.e("details", "${details.data.images.size}")
@@ -59,29 +44,31 @@ class DetailsFragment : Fragment() {
         }
     }
 
-    private fun successCall(){
-        binding.floatingActionButton3.visibility = View.VISIBLE
-        binding.floatingActionButton4.visibility = View.VISIBLE
-        binding.indicator.visibility = View.VISIBLE
-        binding.vpDetails.visibility = View.VISIBLE
-        binding.cnContent.visibility = View.VISIBLE
-        binding.progress.visibility = View.GONE
-        binding.btRetry.visibility = View.GONE
-        binding.textView8.visibility = View.GONE
+    private fun successCall(detailsFragmentBinding: DetailsFragmentBinding) {
+        detailsFragmentBinding.floatingActionButton3.visibility = View.VISIBLE
+        detailsFragmentBinding.floatingActionButton4.visibility = View.VISIBLE
+        detailsFragmentBinding.indicator.visibility = View.VISIBLE
+        detailsFragmentBinding.vpDetails.visibility = View.VISIBLE
+        detailsFragmentBinding.cnContent.visibility = View.VISIBLE
+        detailsFragmentBinding.progress.visibility = View.GONE
+        detailsFragmentBinding.btRetry.visibility = View.GONE
+        detailsFragmentBinding.textView8.visibility = View.GONE
     }
 
-    private fun failedCaLL(errorMessage: String){
-        binding.progress.visibility = View.VISIBLE
-        binding.btRetry.visibility = View.VISIBLE
-        binding.textView8.visibility = View.VISIBLE
-        binding.textView8.text = errorMessage
-        binding.btRetry.setOnClickListener {
+    private fun failedCaLL(detailsFragmentBinding: DetailsFragmentBinding, errorMessage: String){
+        detailsFragmentBinding.progress.visibility = View.VISIBLE
+        detailsFragmentBinding.btRetry.visibility = View.VISIBLE
+        detailsFragmentBinding.textView8.visibility = View.VISIBLE
+        detailsFragmentBinding.textView8.text = errorMessage
+        detailsFragmentBinding.btRetry.setOnClickListener {
             viewModel.getDetailsData(devJson.id, arg.productID)
         }
     }
 
-    private fun promotion(promo: String){
-        binding.ivPromo.visibility = View.VISIBLE
-        binding.tvPromo.text = promo
+    private fun promotion(detailsFragmentBinding: DetailsFragmentBinding,promo: String){
+        detailsFragmentBinding.ivPromo.visibility = View.VISIBLE
+        detailsFragmentBinding.tvPromo.text = promo
     }
+
+    override fun getViewModelClass() = DetailsViewModel::class.java
 }
