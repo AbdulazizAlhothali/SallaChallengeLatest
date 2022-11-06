@@ -42,7 +42,6 @@ class StorePagingAdapter(private val font: String) :
             binding.item = store
             if (store.promotion.title != null) {
                 binding.ivPromo.visibility = View.VISIBLE
-                binding.tvPromo.text = store.promotion.title
             } else {
                 binding.ivPromo.visibility = View.GONE
             }

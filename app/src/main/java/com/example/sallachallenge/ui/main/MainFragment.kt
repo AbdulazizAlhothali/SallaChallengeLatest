@@ -17,8 +17,7 @@ import javax.inject.Inject
 class MainFragment : BaseFragment<MainFragmentBinding,MainViewModel>(R.layout.main_fragment) {
 
 
-    //private lateinit var binding: MainFragmentBinding
-    //private val viewModel by viewModels<MainViewModel>()
+
     private lateinit var adapter: StorePagingAdapter
     private lateinit var brandAdapter: BrandAdapter
     private lateinit var concatAdapter: ConcatAdapter
@@ -79,16 +78,15 @@ class MainFragment : BaseFragment<MainFragmentBinding,MainViewModel>(R.layout.ma
     private fun setObservers(mainFragmentBinding: MainFragmentBinding) {
         viewModel.getBrandData()
         viewModel.itemsState.observe(viewLifecycleOwner) {
-            Log.e("MyStore", "here $it")
             adapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
         viewModel.state.observe(viewLifecycleOwner) {
 
             if (it.success) {
                 mainFragmentBinding.rvMain.visibility = View.VISIBLE
-                mainFragmentBinding.textView8.visibility = View.GONE
+                mainFragmentBinding.errorView.visibility = View.GONE
                 mainFragmentBinding.progress.visibility = View.GONE
-                mainFragmentBinding.btRetry.visibility = View.GONE
+
                 brandAdapter.submitList(listOf(it))
             }
         }
@@ -96,9 +94,8 @@ class MainFragment : BaseFragment<MainFragmentBinding,MainViewModel>(R.layout.ma
         viewModel.error.observe(viewLifecycleOwner) {
             if (it != null) {
                 mainFragmentBinding.progress.visibility = View.VISIBLE
-                mainFragmentBinding.btRetry.visibility = View.VISIBLE
+                mainFragmentBinding.errorView.visibility = View.VISIBLE
                 mainFragmentBinding.rvMain.visibility = View.GONE
-                mainFragmentBinding.textView8.visibility = View.VISIBLE
                 mainFragmentBinding.textView8.text = it
                 mainFragmentBinding.btRetry.setOnClickListener {
                     setObservers(mainFragmentBinding)
