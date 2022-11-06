@@ -9,11 +9,11 @@ interface StoreApi {
 
 
     @GET("brands/259940351?")
-    suspend fun getStoreData(@Header("Store-Identifier") header: String, @Query("page") page: Int, @Query("per_page") per_page: Int): BaseStoreData
+    suspend fun getStoreData(@Query("page") page: Int, @Query("per_page") per_page: Int): BaseStoreData
 
     @GET("brands/259940351?")
-    suspend fun getBrandeData(@Header("Store-Identifier") header: String): BrandData
+    suspend fun getBrandeData(): BrandData
 
     @GET("products/{product_id}/details")
-    suspend fun getDetailsData(@Header("Store-Identifier") header: String, @Path("product_id") productId: String): DetailsBase
+    suspend fun getDetailsData(@Path("product_id") productId: String): DetailsBase
 }

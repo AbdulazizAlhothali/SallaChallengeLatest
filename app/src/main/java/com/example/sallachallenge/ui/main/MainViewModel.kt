@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val repo: StoreRepo, private val json: DevelopersJson) : ViewModel()  {
+class MainViewModel @Inject constructor(private val repo: StoreRepo) : ViewModel()  {
 
     private val _error = MutableLiveData<String?>(null)
     val error: LiveData<String?> = _error
@@ -26,11 +26,11 @@ class MainViewModel @Inject constructor(private val repo: StoreRepo, private val
 
 
 
-    private fun getItemData() = repo.getStoreData(json.id).cachedIn(viewModelScope).asLiveData()
+    private fun getItemData() = repo.getStoreData().cachedIn(viewModelScope).asLiveData()
 
     fun getBrandData() {
         viewModelScope.launch {
-            when(val result = repo.getBrandData(json.id)){
+            when(val result = repo.getBrandData()){
                 is Resource.Success -> {
                     _state.postValue(result.data)
                     _error.value = null

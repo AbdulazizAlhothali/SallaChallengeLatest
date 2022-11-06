@@ -5,7 +5,7 @@
     <data>
         <variable
             name="image"
-            type="com.example.sallachallenge.models.details.Images" />
+            type="com.example.sallachallenge.models.details.Image" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

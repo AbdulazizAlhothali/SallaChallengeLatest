@@ -165,40 +165,30 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="16dp"
-                android:text="@{details.data.promotion.sub_title}"
+                android:text="@{details.data.subtitle}"
                 app:changeFont="@{dev.font_family}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/text_view5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:text="@{Double.toString(details.data.price.amount)}"
+                android:text="@{Double.toString(details.data.price)}"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 app:changeFont="@{dev.font_family}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/text_view" />
 
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="104dp"
-                android:layout_height="83dp"
-                android:layout_marginTop="48dp"
-                app:loadimage="@{details.data.brand.logo}"
-                app:layout_constraintEnd_toStartOf="@+id/textView"
-                app:layout_constraintHorizontal_bias="0.105"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/avatars" />
+
 
             <TextView
                 android:id="@+id/textView6"
@@ -206,10 +196,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="4dp"
-                android:text="@{details.data.price.currency}"
-                app:layout_constraintBottom_toBottomOf="@+id/textView5"
-                app:layout_constraintEnd_toStartOf="@+id/textView5"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintBottom_toBottomOf="@+id/text_view5"
+                app:layout_constraintEnd_toStartOf="@+id/text_view5"
+                app:layout_constraintTop_toBottomOf="@+id/text_view" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
