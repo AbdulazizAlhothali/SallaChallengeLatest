@@ -96,7 +96,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <com.example.sallachallenge.utils.CustomTextView
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -123,7 +123,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.089">
 
-            <TextView
+            <com.example.sallachallenge.utils.CustomTextView
                 android:id="@+id/tv_promo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -151,7 +151,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/indicator">
 
-            <TextView
+            <com.example.sallachallenge.utils.CustomTextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -160,22 +160,20 @@
                 android:text="@{details.data.name}"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                app:changeFont="@{dev.font_family}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <com.example.sallachallenge.utils.CustomTextView
                 android:id="@+id/text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="16dp"
                 android:text="@{details.data.subtitle}"
-                app:changeFont="@{dev.font_family}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-            <TextView
+            <com.example.sallachallenge.utils.CustomTextView
                 android:id="@+id/text_view5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -184,13 +182,12 @@
                 android:text="@{Double.toString(details.data.price)}"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                app:changeFont="@{dev.font_family}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_view" />
 
 
 
-            <TextView
+            <com.example.sallachallenge.utils.CustomTextView
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
