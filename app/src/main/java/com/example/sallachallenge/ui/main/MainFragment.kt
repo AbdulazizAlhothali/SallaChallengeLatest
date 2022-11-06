@@ -83,6 +83,7 @@ class MainFragment : BaseFragment<MainFragmentBinding,MainViewModel>(R.layout.ma
             adapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
         viewModel.state.observe(viewLifecycleOwner) {
+
             if (it.success) {
                 mainFragmentBinding.rvMain.visibility = View.VISIBLE
                 mainFragmentBinding.textView8.visibility = View.GONE

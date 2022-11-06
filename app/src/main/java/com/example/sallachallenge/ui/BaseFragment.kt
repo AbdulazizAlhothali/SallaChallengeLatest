@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
-abstract class BaseFragment<T: ViewDataBinding, K: ViewModel>(@LayoutRes private val layoutResId : Int): Fragment() {
+abstract class BaseFragment<T: ViewDataBinding, K: BaseViewModel>(@LayoutRes private val layoutResId : Int): Fragment() {
 
     private var _binding: T? = null
     protected val binding : T get() = _binding!!

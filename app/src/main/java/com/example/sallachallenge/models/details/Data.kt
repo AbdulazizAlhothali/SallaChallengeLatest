@@ -17,16 +17,16 @@ data class Data (
     val subtitle: String,
     val type: String,
     val status: String,
-    val price: Long,
+    val price: Double,
 
     @SerializedName("sale_price")
-    val salePrice: Long,
+    val salePrice: Double,
 
     @SerializedName("regular_price")
-    val regularPrice: Long,
+    val regularPrice: Double,
 
     @SerializedName("starting_price")
-    val startingPrice: Any? = null,
+    val startingPrice: Double? = null,
 
     val quantity: Long,
 

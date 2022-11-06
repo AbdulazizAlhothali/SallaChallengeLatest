@@ -107,7 +107,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/ivPromo"
+            android:id="@+id/iv_promo"
             android:layout_width="249dp"
             android:layout_height="35dp"
             android:layout_marginStart="-50dp"
@@ -124,7 +124,7 @@
             app:layout_constraintVertical_bias="0.089">
 
             <TextView
-                android:id="@+id/tvPromo"
+                android:id="@+id/tv_promo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="خصم ماركة  Armani"
