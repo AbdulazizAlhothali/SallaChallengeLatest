@@ -9,9 +9,9 @@ import com.example.sallachallenge.utils.Resource
 import kotlinx.coroutines.flow.Flow
 
 interface StoreRepo {
-    fun getStoreData(header: String): Flow<PagingData<Data>>
+    fun getStoreData(): Flow<PagingData<Data>>
 
-    suspend fun getBrandData(header: String): Resource<BrandData>
+    suspend fun getBrandData(): Resource<BrandData>
 
-    suspend fun getDetailsData(header: String, productId: String): Resource<DetailsBase>
+    suspend fun getDetailsData(productId: String): Resource<DetailsBase>
 }

@@ -20,10 +20,10 @@ class DetailsViewModel @Inject constructor(private val repo: StoreRepo)  : ViewM
     private val _state = MutableLiveData<DetailsBase>()
     val state = _state
 
-    fun getDetailsData(header: String, productId: String) {
+    fun getDetailsData(productId: String) {
 
         viewModelScope.launch {
-            when(val result = repo.getDetailsData(header, productId)){
+            when(val result = repo.getDetailsData(productId)){
                 is Resource.Success -> {
                     _state.postValue(result.data)
                     _error.value = null

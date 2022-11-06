@@ -1,56 +1,72 @@
 package com.example.sallachallenge.models.details
 
-
+import com.google.gson.annotations.SerializedName
 
 
 data class Data (
 
-    val id : Int,
-    val promotion : Promotion,
-    val sku : String,
-    val mpn : String,
-    val gtin : String,
-    val type : String,
-    val name : String,
-    val short_link_code : String,
-    val urls : Urls,
-    val price : Price,
-    val taxed_price : Taxed_price,
-    val pre_tax_price : PreTaxPrice,
-    val tax : Tax,
-    val description : String,
-    val quantity : Int,
-    val status : String,
-    val is_available : Boolean,
-    val views : String,
-    val sale_price : Sale_price,
-    val sale_end : String,
-    val require_shipping : Boolean,
-    val cost_price : Double,
-    val weight : Double,
-    val weight_type : String,
-    val weight_label : String,
-    val with_tax : Boolean,
-    val included_tax : Boolean,
-    val url : String,
-    val main_image : String,
-    val images : List<Images>,
-    val show_purchase_count : Boolean,
-    val sold_quantity : Int,
-    val sold_quantity_desc : String,
-    val rating : Rating,
-    val favorite : String,
-    val has_special_price : Boolean,
-    val regular_price : Regular_price,
-    val features : Features,
-    val max_items_per_user : Int,
-    val maximum_quantity_per_order : String,
-    val show_in_app : Boolean,
-    val has_size_guide : Boolean,
-    val notify_quantity : String,
-    val hide_quantity : Boolean,
-    val unlimited_quantity : Boolean,
-    val managed_by_branches : Boolean,
-    val calories : String,
-    val brand : Brand
+    val id: String,
+    val sku: String,
+    val name: String,
+    val description: String,
+    val url: String,
+
+    @SerializedName("promotion_title")
+    val promotionTitle: String,
+
+    val subtitle: String,
+    val type: String,
+    val status: String,
+    val price: Long,
+
+    @SerializedName("sale_price")
+    val salePrice: Long,
+
+    @SerializedName("regular_price")
+    val regularPrice: Long,
+
+    @SerializedName("starting_price")
+    val startingPrice: Any? = null,
+
+    val quantity: Long,
+
+    @SerializedName("max_quantity")
+    val maxQuantity: Long,
+
+    @SerializedName("discount_ends")
+    val discountEnds: Long,
+
+    @SerializedName("is_taxable")
+    val isTaxable: Boolean,
+
+    @SerializedName("has_read_more")
+    val hasReadMore: Boolean,
+
+    @SerializedName("can_add_note")
+    val canAddNote: Boolean,
+
+    @SerializedName("can_show_remained_quantity")
+    val canShowRemainedQuantity: Boolean,
+
+    @SerializedName("can_upload_file")
+    val canUploadFile: Boolean,
+
+    @SerializedName("has_custom_form")
+    val hasCustomForm: Boolean,
+
+    @SerializedName("is_on_sale")
+    val isOnSale: Boolean,
+
+    @SerializedName("is_hidden_quantity")
+    val isHiddenQuantity: Boolean,
+
+    @SerializedName("is_available")
+    val isAvailable: Boolean,
+
+    @SerializedName("is_out_of_stock")
+    val isOutOfStock: Boolean,
+
+    val weight: String,
+    val calories: Any? = null,
+    val image: Image
 )

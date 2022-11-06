@@ -23,7 +23,7 @@ class DetailsFragment : BaseFragment<DetailsFragmentBinding, DetailsViewModel>(R
 
     override fun DetailsFragmentBinding.initialize(){
         this.dev = devJson
-        viewModel.getDetailsData(devJson.id, arg.productID)
+        viewModel.getDetailsData(arg.productID)
         viewModel.error.observe(viewLifecycleOwner) {
             if (it != null) {
                 failedCaLL(this, errorMessage = it)
@@ -34,11 +34,11 @@ class DetailsFragment : BaseFragment<DetailsFragmentBinding, DetailsViewModel>(R
             if (details.success) {
                 successCall(this)
             }
-            if (details.data.promotion.title != null) {
-                promotion(this,details.data.promotion.title)
+            if (details.data.promotionTitle != null) {
+                promotion(this,details.data.promotionTitle)
             }
-            adapter = DetailsAdapter(details.data.images)
-            Log.e("details", "${details.data.images.size}")
+            adapter = DetailsAdapter(listOf(details.data.image))
+            //Log.e("details", "${details.data.images.size}")
             binding.vpDetails.adapter = adapter
             binding.indicator.setViewPager(binding.vpDetails)
         }
@@ -61,7 +61,7 @@ class DetailsFragment : BaseFragment<DetailsFragmentBinding, DetailsViewModel>(R
         detailsFragmentBinding.textView8.visibility = View.VISIBLE
         detailsFragmentBinding.textView8.text = errorMessage
         detailsFragmentBinding.btRetry.setOnClickListener {
-            viewModel.getDetailsData(devJson.id, arg.productID)
+            viewModel.getDetailsData(arg.productID)
         }
     }
 

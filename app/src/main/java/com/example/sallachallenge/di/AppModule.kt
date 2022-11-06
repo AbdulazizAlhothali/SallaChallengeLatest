@@ -12,7 +12,9 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -31,8 +33,11 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideOkHttp(logger: HttpLoggingInterceptor): OkHttpClient.Builder {
-        return OkHttpClient.Builder().addInterceptor(logger)
+    fun provideOkHttp(logger: HttpLoggingInterceptor, developersJson: DevelopersJson): OkHttpClient.Builder {
+        return OkHttpClient.Builder().addInterceptor(Interceptor { chain ->
+            val req =chain.request().newBuilder().addHeader("Store-Identifier",developersJson.id).build()
+            chain.proceed(req)
+        }).addInterceptor(logger)
     }
 
     @Singleton

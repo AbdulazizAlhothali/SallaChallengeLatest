@@ -8,7 +8,7 @@ import com.example.sallachallenge.retrofit.StoreApi
 import retrofit2.HttpException
 import java.io.IOException
 
-class StorePagingSource(private val storeApi: StoreApi, private val header: String) : PagingSource<Int, Data>(){
+class StorePagingSource(private val storeApi: StoreApi) : PagingSource<Int, Data>(){
     override fun getRefreshKey(state: PagingState<Int, Data>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)
@@ -20,7 +20,7 @@ class StorePagingSource(private val storeApi: StoreApi, private val header: Stri
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Data> {
         return try {
             val position = params.key ?: 1
-            val response = storeApi.getStoreData(header,position, params.loadSize)
+            val response = storeApi.getStoreData(position, params.loadSize)
             return LoadResult.Page(
                 data = response.data,
                 prevKey = if (response.cursor.previous == null) null else position - 1,

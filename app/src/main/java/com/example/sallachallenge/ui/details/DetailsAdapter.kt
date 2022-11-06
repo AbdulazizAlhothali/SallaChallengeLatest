@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.sallachallenge.R
 import com.example.sallachallenge.databinding.ImageSliderItemBinding
-import com.example.sallachallenge.models.details.Images
+import com.example.sallachallenge.models.details.Image
 
-class DetailsAdapter(private val images: List<Images>): RecyclerView.Adapter<DetailsAdapter.DetailsViewHolder>() {
+class DetailsAdapter(private val images: List<Image>): RecyclerView.Adapter<DetailsAdapter.DetailsViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailsViewHolder {
@@ -32,7 +32,7 @@ class DetailsAdapter(private val images: List<Images>): RecyclerView.Adapter<Det
 
 
     class DetailsViewHolder(private val binding: ImageSliderItemBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(image: Images){
+        fun bind(image: Image){
             binding.image = image
         }
     }
