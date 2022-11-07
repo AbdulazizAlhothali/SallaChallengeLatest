@@ -7,9 +7,10 @@
         <variable
             name="dev"
             type="com.example.sallachallenge.models.developersjson.DevelopersJson" />
+
         <variable
-            name="details"
-            type="com.example.sallachallenge.models.details.DetailsBase" />
+            name="detail_view_model"
+            type="com.example.sallachallenge.ui.details.DetailsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,93 +19,120 @@
         app:changeColor="@{dev.app_color}"
         tools:context=".ui.details.DetailsFragment">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton3"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/view_pager_cn"
+            android:visibility="gone"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#FFFFFF"
-            android:clickable="true"
-            android:visibility="gone"
-            app:backgroundTint="#757474"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.295"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.388"
-            app:srcCompat="@drawable/ic_baseline_share_24" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#EFEFEF"
-            android:clickable="true"
-            android:visibility="gone"
-            app:backgroundTint="#757474"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.076"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.387"
-            app:srcCompat="@drawable/ic_baseline_favorite_24" />
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingActionButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FFFFFF"
+                android:clickable="true"
+                app:backgroundTint="#757474"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.295"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.92"
+                app:srcCompat="@drawable/ic_baseline_share_24" />
 
-        <me.relex.circleindicator.CircleIndicator3
-            android:id="@+id/indicator"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="8dp"
-            android:elevation="4dp"
-            android:layoutDirection="rtl"
-            app:ci_gravity="center"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/vpDetails" />
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingActionButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#EFEFEF"
+                android:clickable="true"
+                app:backgroundTint="#757474"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.076"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.92"
+                app:srcCompat="@drawable/ic_baseline_favorite_24" />
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/vpDetails"
-            android:layout_width="411dp"
-            android:layout_height="323dp"
-            android:layoutDirection="rtl"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tb_indicator"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:elevation="4dp"
+                app:tabMinWidth="15dp"
+                android:layoutDirection="rtl"
+                app:tabGravity="center"
+                app:tabBackground="@drawable/tab_selector"
+                app:tabIndicatorHeight="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vpDetails"
+
+                />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vpDetails"
+                android:layout_width="411dp"
+                android:layout_height="323dp"
+                android:layoutDirection="rtl"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
         <ProgressBar
             android:id="@+id/progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/textView8"
+            app:layout_constraintBottom_toTopOf="@+id/error_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.89" />
 
-        <Button
-            android:id="@+id/btRetry"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/error_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Retry"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <com.example.sallachallenge.utils.CustomTextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:gravity="center_horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/btRetry"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            <Button
+                android:id="@+id/btRetry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Retry"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/error_view" />
+
+            <com.example.sallachallenge.utils.CustomTextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:gravity="center_horizontal"
+                android:text="@{detail_view_model.error}"
+                app:layout_constraintBottom_toTopOf="@+id/btRetry"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/iv_promo"
@@ -149,7 +177,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/indicator">
+            app:layout_constraintTop_toBottomOf="@+id/view_pager_cn">
 
             <com.example.sallachallenge.utils.CustomTextView
                 android:id="@+id/textView4"
@@ -157,7 +185,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
-                android:text="@{details.data.name}"
+                android:text="@{detail_view_model.state.data.name}"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -169,7 +197,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="16dp"
-                android:text="@{details.data.subtitle}"
+                android:text="@{detail_view_model.state.data.subtitle}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -179,7 +207,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:text="@{Double.toString(details.data.price)}"
+                android:text="@{Double.toString(detail_view_model.state.data.price)}"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 app:layout_constraintEnd_toEndOf="parent"

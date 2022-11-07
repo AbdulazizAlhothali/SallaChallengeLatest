@@ -12,7 +12,7 @@ data class Data (
     val url: String,
 
     @SerializedName("promotion_title")
-    val promotionTitle: String,
+    val promotionTitle: String?,
 
     val subtitle: String,
     val type: String,

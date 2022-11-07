@@ -27,7 +27,6 @@ abstract class BaseFragment<T: ViewDataBinding, K: BaseViewModel>(@LayoutRes pri
         _binding = DataBindingUtil.inflate(inflater, layoutResId, container, false)
         viewModel = ViewModelProvider(this)[getViewModelClass()]
         binding.lifecycleOwner = viewLifecycleOwner
-
         return binding.root
     }
 

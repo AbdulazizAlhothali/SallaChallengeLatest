@@ -8,9 +8,11 @@ import com.example.sallachallenge.paging.StorePagingSource
 import com.example.sallachallenge.retrofit.StoreApi
 import com.example.sallachallenge.utils.Resource
 import com.google.gson.Gson
+import com.google.gson.JsonSyntaxException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
+import java.io.IOException
 import javax.inject.Inject
 
 class StoreRepoImpl @Inject constructor(private val storeApi: StoreApi): StoreRepo {
@@ -26,6 +28,10 @@ class StoreRepoImpl @Inject constructor(private val storeApi: StoreApi): StoreRe
             val error = e.response()?.errorBody()?.string()
             val errorMessage = Gson().fromJson(error, ExampleJson2KtKotlin::class.java)
             Resource.Error(errorMessage.error?.message ?: e.message ?: "An unknown error occurred")
+        } catch (e: IOException){
+            Resource.Error(e.message ?: "An unknown error occurred")
+        } catch (e: JsonSyntaxException){
+            Resource.Error(e.message ?: "An unknown error occurred")
         } catch (e: Exception){
             Resource.Error(e.message ?: "An unknown error occurred")
         }
@@ -38,6 +44,10 @@ class StoreRepoImpl @Inject constructor(private val storeApi: StoreApi): StoreRe
             val error = e.response()?.errorBody()?.string()
             val errorMessage = Gson().fromJson(error, ExampleJson2KtKotlin::class.java)
             Resource.Error(errorMessage.error?.message ?: e.message ?: "An unknown error occurred")
+        } catch (e: IOException){
+            Resource.Error(e.message ?: "An unknown error occurred")
+        } catch (e: JsonSyntaxException){
+            Resource.Error(e.message ?: "An unknown error occurred")
         } catch (e: Exception){
             Resource.Error(e.message ?: "An unknown error occurred")
         }

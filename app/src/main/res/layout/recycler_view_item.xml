@@ -12,6 +12,7 @@
             type="com.example.sallachallenge.models.items.Data" />
     </data>
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="185dp"
         android:layout_height="355dp"

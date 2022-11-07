@@ -1,13 +1,13 @@
 package com.example.sallachallenge.ui.details
 
-import android.os.Bundle
-import android.util.Log
+
 import android.view.View
 import androidx.navigation.fragment.navArgs
 import com.example.sallachallenge.R
 import com.example.sallachallenge.databinding.DetailsFragmentBinding
 import com.example.sallachallenge.models.developersjson.DevelopersJson
 import com.example.sallachallenge.ui.BaseFragment
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -23,14 +23,14 @@ class DetailsFragment : BaseFragment<DetailsFragmentBinding, DetailsViewModel>(R
 
     override fun DetailsFragmentBinding.initialize(){
         this.dev = devJson
+        this.detailViewModel = viewModel
         viewModel.getDetailsData(arg.productID)
         viewModel.error.observe(viewLifecycleOwner) {
             if (it != null) {
-                failedCaLL(this, errorMessage = it)
+                failedCaLL(this)
             }
         }
         viewModel.state.observe(viewLifecycleOwner) { details ->
-            binding.details = details
             if (details.success) {
                 successCall(this)
             }
@@ -38,28 +38,22 @@ class DetailsFragment : BaseFragment<DetailsFragmentBinding, DetailsViewModel>(R
                 promotion(this,details.data.promotionTitle)
             }
             adapter = DetailsAdapter(listOf(details.data.image))
-            //Log.e("details", "${details.data.images.size}")
-            binding.vpDetails.adapter = adapter
-            binding.indicator.setViewPager(binding.vpDetails)
+            this.vpDetails.adapter = adapter
+            TabLayoutMediator(this.tbIndicator, this.vpDetails) { _,_ ->
+            }.attach()
         }
     }
 
     private fun successCall(detailsFragmentBinding: DetailsFragmentBinding) {
-        detailsFragmentBinding.floatingActionButton3.visibility = View.VISIBLE
-        detailsFragmentBinding.floatingActionButton4.visibility = View.VISIBLE
-        detailsFragmentBinding.indicator.visibility = View.VISIBLE
-        detailsFragmentBinding.vpDetails.visibility = View.VISIBLE
+        detailsFragmentBinding.viewPagerCn.visibility = View.VISIBLE
         detailsFragmentBinding.cnContent.visibility = View.VISIBLE
         detailsFragmentBinding.progress.visibility = View.GONE
-        detailsFragmentBinding.btRetry.visibility = View.GONE
-        detailsFragmentBinding.textView8.visibility = View.GONE
+        detailsFragmentBinding.errorView.visibility = View.GONE
     }
 
-    private fun failedCaLL(detailsFragmentBinding: DetailsFragmentBinding, errorMessage: String){
+    private fun failedCaLL(detailsFragmentBinding: DetailsFragmentBinding){
         detailsFragmentBinding.progress.visibility = View.VISIBLE
-        detailsFragmentBinding.btRetry.visibility = View.VISIBLE
-        detailsFragmentBinding.textView8.visibility = View.VISIBLE
-        detailsFragmentBinding.textView8.text = errorMessage
+        detailsFragmentBinding.errorView.visibility = View.VISIBLE
         detailsFragmentBinding.btRetry.setOnClickListener {
             viewModel.getDetailsData(arg.productID)
         }
